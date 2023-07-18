@@ -11,6 +11,16 @@ services:
       - ./backend:/app
     depends_on:
       - db
+#  frontend:
+#    image: node:19
+#    working_dir: /app
+#    command: npm start
+#    ports:
+#      - "3001:3001"
+#    volumes:
+#      - ./frontend:/app
+#    depends_on:
+#      - backend
   nginx:
     image: nginx:latest
     ports:
@@ -24,7 +34,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: modernmario
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypass
     ports:

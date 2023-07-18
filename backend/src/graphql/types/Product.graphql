@@ -1,0 +1,27 @@
+type Product {
+	id: ID!
+	name: String!
+	shortDescription: String!
+	description: String!
+	categoryId: ID!
+	categoryDisplayName: String!
+	img: String!
+	deleted: Boolean!
+}
+
+type Query {
+	products: [Product!]!
+	product(id: ID): Product
+}
+
+type Mutation {
+	createProduct(
+		name: String!
+		shortDescription: String!
+		description: String!
+		categoryId: ID!
+		categoryDisplayName: String!
+		img: String!
+		deleted: Boolean!
+	): Product!
+}

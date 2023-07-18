@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "rootDirs": ["src"],
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "module": "esnext",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "es2022",
+    "lib": ["es2020"],
+    "moduleResolution": "node",
+    "types": ["node"],
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "strict": true
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

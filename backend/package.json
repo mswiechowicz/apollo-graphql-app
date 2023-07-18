@@ -1,18 +1,41 @@
 {
-    "name": "my-app",
-    "version": "1.0.0",
-    "description": "My Node.js app",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon index.js"
-    },
-    "dependencies": {
-        "dotenv": "^16.3.1",
-        "express": "^4.17.1",
-        "mysql2": "^2.3.0"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.22",
-        "prettier": "^2.8.8"
+  "name": "modernmario-backend",
+  "version": "1.0.0",
+  "author": "mswiechowicz",
+  "description": "Backend for modernmario",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts",
+    "test": "jest src"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.7.5",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@graphql-tools/merge": "^9.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.1",
+    "graphql": "^16.7.1",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.32.1",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.3",
+    "jest": "^29.6.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
     }
+  }
 }
