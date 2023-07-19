@@ -1,29 +1,38 @@
-import { Models } from '../../types';
+import { IAuthPayload, ILoginInput, IUser, Models } from '../../types';
+import { getUserData } from '../../utils/jwt';
+import { doLogin, getUserBy } from '../../utils/auth';
 
 export default {
 	Query: {
-		users: (_: any, args: any, models: Models) => models.User.findAll(),
-		user: (_: any, { id }: { id: number }, models: Models) => models.User.findByPk(id),
+		users: (_: any, args: any, models: Models): IUser[] => models.User.findAll(),
+		userData: async (_: any, { at }: { at: string }, models: Models): Promise<IUser | null> => {
+			const connectedUser = await getUserData(at);
+
+			if (connectedUser) {
+				const user = await getUserBy(
+					{
+						id: connectedUser.id,
+						email: connectedUser.email,
+						privilege: connectedUser.privilege,
+						active: connectedUser.active,
+					},
+					models
+				);
+
+				if (user) {
+					return { ...connectedUser };
+				}
+			}
+
+			return null;
+		},
 	},
 	Mutation: {
-		createUser: (_: any, { name, email }: { name: string; email: string }, models: Models) =>
-			models.User.create({ name, email }),
+		createUser: (_: any, { input }: { input: IUser }, models: Models): IUser => {
+			return models.User.create({ ...input });
+		},
+		login: (_: any, { input }: { input: ILoginInput }, models: Models): Promise<IAuthPayload> => {
+			return doLogin(input.email, input.password, models);
+		},
 	},
 };
-
-// export default {
-// 	Query: {
-// 		users: (_: any, args: any, { models }: { models: IModels }) => models.User.findAll(),
-// 		user: (_: any, { id }: { id: number }, { models }: { models: IModels }) =>
-// 			models.User.findByPk(id),
-// 	},
-// 	Mutation: {
-// 		createUser: (
-// 			_: any,
-// 			{ name, email }: { name: string; email: string },
-// 			{ models }: { models: IModels }
-// 		) => {
-// 			models.User.create({ name, email });
-// 		},
-// 	},
-// };

@@ -1,4 +1,4 @@
-import { Models } from '../../types';
+import { IProduct, Models } from '../../types';
 
 export default {
 	Query: {
@@ -6,35 +6,8 @@ export default {
 		product: (_: any, { id }: { id: number }, models: Models) => models.Product.findByPk(id),
 	},
 	Mutation: {
-		createProduct: (
-			_: any,
-			{
-				name,
-				shortDescription,
-				description,
-				categoryId,
-				categoryDisplayName,
-				img,
-				deleted,
-			}: {
-				name: string;
-				shortDescription: string;
-				description: string;
-				categoryId: string;
-				categoryDisplayName: string;
-				img: string;
-				deleted: boolean;
-			},
-			models: Models
-		) =>
-			models.Product.create({
-				name,
-				shortDescription,
-				description,
-				categoryId,
-				categoryDisplayName,
-				img,
-				deleted,
-			}),
+		createProduct: (_: any, { productInput }: { productInput: IProduct }, models: Models) => {
+			return models.Product.create(productInput);
+		},
 	},
 };

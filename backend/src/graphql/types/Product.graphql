@@ -15,13 +15,15 @@ type Query {
 }
 
 type Mutation {
-	createProduct(
-		name: String!
-		shortDescription: String!
-		description: String!
-		categoryId: ID!
-		categoryDisplayName: String!
-		img: String!
-		deleted: Boolean!
-	): Product!
+	createProduct(productInput: CreateProductInput): Product!
+}
+
+input CreateProductInput {
+	name: String!
+	shortDescription: String!
+	description: String!
+	categoryId: ID!
+	categoryDisplayName: String!
+	img: String!
+	deleted: Boolean!
 }

@@ -1,7 +1,8 @@
 import { Sequelize, DataTypes } from 'sequelize';
+import { IProduct } from '../types';
 
 export const Product = (sequelize: Sequelize) =>
-	sequelize.define('Product', {
+	sequelize.define<IProduct>('Product', {
 		id: {
 			primaryKey: true,
 			allowNull: false,
