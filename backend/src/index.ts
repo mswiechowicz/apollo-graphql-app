@@ -22,7 +22,7 @@ await sequelize
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const plugins = [ApolloServerPluginDrainHttpServer({ httpServer })];
-const server = new ApolloServer<Models>({ schema, plugins });
+const server = new ApolloServer<Models>({ schema, plugins, introspection: true });
 await server.start();
 
 app.use(
