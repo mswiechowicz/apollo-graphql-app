@@ -1,6 +1,7 @@
 import { IAuthPayload, ILoginInput, IUser, Models } from '../../types';
 import { getUserData } from '../../utils/jwt';
 import { doLogin, getUserBy } from '../../utils/auth';
+import { GraphQLError } from 'graphql/error';
 
 export default {
 	Query: {
@@ -24,7 +25,7 @@ export default {
 				}
 			}
 
-			return null;
+			throw new GraphQLError('Something is broken');
 		},
 	},
 	Mutation: {
