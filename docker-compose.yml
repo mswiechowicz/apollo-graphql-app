@@ -16,7 +16,7 @@ services:
 #    working_dir: /app
 #    command: npm start
 #    ports:
-#      - "3001:3001"
+#      - "4000:4000"
 #    volumes:
 #      - ./frontend:/app
 #    depends_on:
@@ -30,7 +30,7 @@ services:
     depends_on:
       - backend
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
