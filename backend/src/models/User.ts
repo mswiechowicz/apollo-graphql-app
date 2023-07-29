@@ -18,11 +18,11 @@ export const User = (sequelize: Sequelize) => {
 				unique: true,
 				validate: {
 					isAlphanumeric: {
-						msg: 'W nazwie użytkownika dozwolone są wyłącznie znaki alfanumeryczne.',
+						msg: 'Only alphanumeric characters are allowed in the username.',
 					},
 					len: {
 						args: [4, 20],
-						msg: 'Nazwa użytkownika musi zawierać od 4 do 20 znaków.',
+						msg: 'The username must contain between 4 and 20 characters.',
 					},
 				},
 			},
@@ -36,7 +36,7 @@ export const User = (sequelize: Sequelize) => {
 				unique: true,
 				validate: {
 					isEmail: {
-						msg: 'Niepoprawny adres e-mail.',
+						msg: 'Incorrect email address.',
 					},
 				},
 			},

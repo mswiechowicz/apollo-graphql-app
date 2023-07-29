@@ -19,17 +19,17 @@ export const doLogin = async (
 	const user = await getUserBy({ email }, models);
 
 	if (!user) {
-		throw AuthenticationError('Niepoprawne logowanie.');
+		throw AuthenticationError('Incorrect login.');
 	}
 
 	const passwordMatch = bcrypt.compareSync(password, user.password);
 	if (!passwordMatch) {
-		throw AuthenticationError('Niepoprawne logowanie.');
+		throw AuthenticationError('Incorrect login.');
 	}
 
 	const isActive = user.active;
 	if (!isActive) {
-		throw AuthenticationError('Konto nie zostało jeszcze aktywowane.');
+		throw AuthenticationError('The account has not yet been activated.');
 	}
 
 	const [token] = await createToken(user);

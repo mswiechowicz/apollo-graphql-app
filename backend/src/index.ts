@@ -17,8 +17,8 @@ const httpServer = http.createServer(app);
 
 await sequelize
 	.sync({ alter: true, force: false })
-	.then(() => console.log('Baza danych została zsynchronizowana.'))
-	.catch(error => console.error('Błąd synchronizacji bazy danych:', error));
+	.then(() => console.log('Database has been synchronized.'))
+	.catch(error => console.error('Database sync error:', error));
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const plugins = [ApolloServerPluginDrainHttpServer({ httpServer })];
