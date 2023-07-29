@@ -27,10 +27,10 @@ await server.start();
 
 app.use(
 	'/',
-	cors<cors.CorsRequest>({ origin: ['https://modernmario.pl'] }),
+	cors<cors.CorsRequest>({ origin: ['https://example.com'] }),
 	bodyParser.json(),
 	expressMiddleware(server, {
-		context: async ({ req, res }) => models,
+		context: async () => models,
 	})
 );
 
