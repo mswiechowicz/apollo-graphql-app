@@ -1,8 +1,8 @@
 {
-  "name": "modernmario-backend",
+  "name": "apollo-backend-app",
   "version": "1.0.0",
   "author": "mswiechowicz",
-  "description": "Backend for modernmario",
+  "description": "Apollo Server Backend",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
