@@ -9,8 +9,8 @@ const uri = `${dialect}://${username}:${password}@${host}:${port}/${database}`;
 const sequelize = new Sequelize(uri);
 
 const models: Models = {
-	User: User(sequelize),
-	Product: Product(sequelize),
+  User: User(sequelize),
+  Product: Product(sequelize),
 };
 
 export { models, sequelize };

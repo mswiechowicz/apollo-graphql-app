@@ -16,9 +16,9 @@ const app = express();
 const httpServer = http.createServer(app);
 
 await sequelize
-	.sync({ alter: true, force: false })
-	.then(() => console.log('Database has been synchronized.'))
-	.catch(error => console.error('Database sync error:', error));
+  .sync({ alter: true, force: false })
+  .then(() => console.log('Database has been synchronized.'))
+  .catch(error => console.error('Database sync error:', error));
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const plugins = [ApolloServerPluginDrainHttpServer({ httpServer })];
@@ -26,12 +26,12 @@ const server = new ApolloServer<Models>({ schema, plugins, introspection: true }
 await server.start();
 
 app.use(
-	'/',
-	cors<cors.CorsRequest>({ origin: ['https://example.com', 'http://localhost:3000'] }),
-	bodyParser.json(),
-	expressMiddleware(server, {
-		context: async () => models,
-	})
+  '/',
+  cors<cors.CorsRequest>({ origin: ['https://example.com', 'http://localhost:3000'] }),
+  bodyParser.json(),
+  expressMiddleware(server, {
+    context: async () => models,
+  })
 );
 
 await new Promise<void>(resolve => httpServer.listen({ port: $server.port }, resolve));
