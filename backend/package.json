@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.1",
     "mysql2": "^2.3.0",
     "nodemon": "^2.0.22",
+    "pg": "^8.11.3",
     "sequelize": "^6.32.1",
     "ts-node": "^10.9.1"
   },

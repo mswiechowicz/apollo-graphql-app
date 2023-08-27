@@ -1,6 +1,6 @@
 export default {
 	server: {
-		port: 3000,
+		port: 4000,
 	},
 	security: {
 		secretKey: 'C0nt3ntP1',

@@ -27,7 +27,7 @@ await server.start();
 
 app.use(
 	'/',
-	cors<cors.CorsRequest>({ origin: ['https://example.com'] }),
+	cors<cors.CorsRequest>({ origin: ['https://example.com', 'http://localhost:3000'] }),
 	bodyParser.json(),
 	expressMiddleware(server, {
 		context: async () => models,
