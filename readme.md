@@ -8,7 +8,7 @@
 ### Adminer is on http://localhost:8080 (if enabled in docker-compose file)
 
 ___
-## When problems occurs
+## When any problem occurs
 ### Clean all things on docker
 ``` docker compose down -v ```
 ### Start again
