@@ -3,9 +3,13 @@
 ## Start project
 ``` docker compose up ```
 
-### Backend is on http://localhost (also on http://localhost:3000, nginx makes it works without port)
-### Frontend can be on http://localhost:4000 (if u enable it in docker-compose.yml)
-### phpMyAdmin is on http://localhost:8080/
+### Frontend is on http://localhost or http://localhost:4000 (without nginx)
+### Backend is on http://localhost:4000
+### Adminer is on http://localhost:8080 (if enabled in docker-compose file)
 
-## Clean all things on docker
+___
+## When problems occurs
+### Clean all things on docker
 ``` docker compose down -v ```
+### Start again
+``` docker compose up ```
