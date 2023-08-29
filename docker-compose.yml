@@ -4,7 +4,7 @@ services:
   backend:
     image: node:19
     working_dir: /app
-    command: npm i && npm start
+    command: sh -c "npm i && npm start"
     ports:
       - "4000:4000"
     volumes:
@@ -14,7 +14,7 @@ services:
   frontend:
     image: node:19
     working_dir: /app
-    command: npm i && npm start
+    command: sh -c "npm i && npm start"
     ports:
       - "3000:3000"
     volumes:
