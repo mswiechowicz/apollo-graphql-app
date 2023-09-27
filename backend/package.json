@@ -4,11 +4,10 @@
   "author": "mswiechowicz",
   "description": "Apollo Server Backend",
   "main": "src/index.ts",
-  "type": "module",
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts",
+    "start": "bun --watch src/index.ts",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "test": "jest src"
+    "test": "bun test src"
   },
   "dependencies": {
     "@apollo/server": "^4.7.5",
@@ -23,26 +22,17 @@
     "graphql": "^16.7.1",
     "jsonwebtoken": "^9.0.1",
     "mysql2": "^2.3.0",
-    "nodemon": "^2.0.22",
     "pg": "^8.11.3",
-    "sequelize": "^6.32.1",
-    "ts-node": "^10.9.1"
+    "sequelize": "^6.32.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
-    "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.3.3",
-    "jest": "^29.6.0",
     "prettier": "^2.8.8",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
+    "typescript": "^5.1.6",
+    "bun-types": "1.0.1"
   }
 }

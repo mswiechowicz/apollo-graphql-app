@@ -2,9 +2,9 @@ version: "3"
 
 services:
   backend:
-    image: node:19
+    image: oven/bun
     working_dir: /app
-    command: sh -c "npm i && npm start"
+    command: sh -c "bun i && bun start"
     ports:
       - "4000:4000"
     volumes:
