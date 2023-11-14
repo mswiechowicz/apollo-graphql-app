@@ -1,5 +1,8 @@
 # Apollo GraphQL App with docker
 
+## Rename .env file
+``` mv ./backend/.env.example ./backend/.env ```
+
 ## Start project
 ``` docker compose up ```
 
