@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import config from './config';
 import { Dialect } from 'sequelize';
 
 type Db = {
@@ -20,6 +19,7 @@ type Server = {
   port: number;
 };
 
+// TODO Nie trzeba już dotenv/config w Bun, trzeba przerobić to
 const {
   DB_DIALECT = '',
   DB_PORT = '',
@@ -27,6 +27,8 @@ const {
   DB_DATABASE = '',
   DB_USERNAME = '',
   DB_PASSWORD = '',
+  JWT_SECRET = '',
+  JWT_EXPIRATION_TIME = '',
 } = process.env;
 
 const db: Db = {
@@ -38,8 +40,11 @@ const db: Db = {
   password: DB_PASSWORD,
 };
 
-const { security, server } = config;
-
 export const $db: Db = db;
-export const $security: Security = security;
-export const $server: Server = server;
+export const $security: Security = {
+  secretKey: JWT_SECRET,
+  expiresIn: JWT_EXPIRATION_TIME,
+};
+export const $server: Server = {
+  port: 4000,
+};

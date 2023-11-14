@@ -30,3 +30,8 @@ export interface Models {
   User: any;
   Product: any;
 }
+
+export interface ApolloServerContext {
+  models: Models;
+  user: IUser;
+}

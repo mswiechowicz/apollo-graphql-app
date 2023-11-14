@@ -7,7 +7,7 @@ export const getUserBy = async (where: object, models: Models): Promise<IUser | 
   return await models.User.findOne({ where, raw: true });
 };
 
-const AuthenticationError = (msg: string) => {
+export const AuthenticationError = (msg: string) => {
   return new GraphQLError(msg, { extensions: { code: 'UNAUTHENTICATED' } });
 };
 
@@ -32,6 +32,5 @@ export const doLogin = async (
     throw AuthenticationError('The account has not yet been activated.');
   }
 
-  const [token] = await createToken(user);
-  return { token };
+  return { token: createToken(user) };
 };

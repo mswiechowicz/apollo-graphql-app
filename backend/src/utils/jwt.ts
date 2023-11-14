@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { $security } from '../../config';
 import { IUser } from '../types';
-import bcrypt from 'bcryptjs';
 
 const { secretKey } = $security;
 
@@ -36,16 +35,25 @@ export async function getUserData(accessToken: string): Promise<any> {
   });
 }
 
-export const createToken = async (user: IUser): Promise<string[]> => {
-  const { id, username, password, email, privilege, active } = user;
-  const secretKey = bcrypt.hashSync($security.secretKey, bcrypt.genSaltSync(10));
-  const token = setBase64(`${secretKey}${password}`);
+export function getFromAuthHeaderAsBearerToken(authHeader: string | undefined) {
+  if (!authHeader) {
+    return null;
+  }
 
-  const userData = { id, username, token, email, privilege, active };
+  const [bearer, token] = authHeader.split(' ');
+  if (bearer !== 'Bearer') {
+    return null;
+  }
 
-  const signedToken = jwt.sign({ data: setBase64(userData) }, $security.secretKey, {
+  return token;
+}
+
+export function createToken(user: IUser): string {
+  const { id, username, email, privilege, active } = user;
+
+  const userData = { id, username, email, privilege, active };
+
+  return jwt.sign({ data: setBase64(userData) }, $security.secretKey, {
     expiresIn: $security.expiresIn,
   });
-
-  return Promise.all([signedToken]);
-};
+}

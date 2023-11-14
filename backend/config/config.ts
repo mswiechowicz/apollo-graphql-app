@@ -3,7 +3,7 @@ export default {
     port: 4000,
   },
   security: {
-    secretKey: 'C0nt3ntP1',
-    expiresIn: '7d',
+    secretKey: 'L.ihz/})m2&rvv}c|Ty~57F+Mz5DQhSbC',
+    expiresIn: '6h',
   },
 };
