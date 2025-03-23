@@ -58,5 +58,23 @@ mutation Mutation($input: LoginInput) {
 }
 ```
 
-Add header `Authorization` with `Bearer {token}`
+### Example query
+
+Add header `Authorization` with `Bearer {token}` given from login mutation
+
+
+```js
+query Query {
+  users {
+    id
+    username
+    password
+    email
+    privilege
+    active
+    createdAt
+    updatedAt
+  }
+}
+```
 

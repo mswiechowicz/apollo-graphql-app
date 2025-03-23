@@ -1,6 +1,6 @@
-import graphqlLogo from './assets/graphql-logo.png';
-import apollo from './assets/apollo.svg';
-import { gql, useQuery } from '@apollo/client';
+import graphqlLogo from '/graphql-logo.png';
+import apollo from '/apollo.svg';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
 
 const GET_USERS = gql`
@@ -18,16 +18,30 @@ const GET_USERS = gql`
 	}
 `;
 
+const LOGIN = gql`
+  mutation login($input: LoginInput!) {
+   login(input: $input) {
+     token
+   }
+  }
+`;
+
 function App() {
 	const [ formType, setFormType ] = useState('logIn');
-	const { loading, error, data } = useQuery(GET_USERS);
+	const { loading, error, data, refetch: refetchUsers } = useQuery(GET_USERS);
+  const [login, { loading: loginLoading, error: loginError }] = useMutation(LOGIN);
 
+  // @ts-expect-error any
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const formData = new FormData(event.target);
 		const data = Object.fromEntries(formData.entries())
 
-		console.log(data);
+    login({variables: { input: data } })
+      .then((res) => {
+        localStorage.setItem('token', res.data.login.token)
+        refetchUsers();
+      });
 	}
 
 	return (
@@ -93,13 +107,15 @@ function App() {
 					<button
 						type='submit'
 						className='w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
-						GO!
+            {loginLoading ? 'Logging in...' : 'GO!'}
 					</button>
 				</form>
 			</section>
 			{loading && <p>Loading...</p>}
-			{error && <p>Something goes wrong :/</p>}
+			{loginError && <p>{loginError.message}</p>}
+			{error && <p>{error.message}</p>}
 			{data && (
+        // @ts-expect-error any
 				data.users.map(user => (
 					<ul className='list-disc' key={user.id}>
 						<li>Email: {user.email}</li>
