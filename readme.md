@@ -14,6 +14,9 @@ ___
 ### Clean all things on docker
 ``` docker compose down -v ```
 
+### If you have backend error with sequelize (Can occur on win/linux)
+``` rm ./backend/bun.lockb```
+
 
 ### Create user
 ```js

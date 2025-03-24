@@ -1,6 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+// import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled';
 import { models, sequelize } from './models';
 import { typeDefs } from './graphql/types';
 import { resolvers } from './graphql/resolvers';
@@ -22,7 +23,11 @@ await sequelize
   .catch(error => console.error('Database sync error:', error));
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
-const plugins = [ApolloServerPluginDrainHttpServer({ httpServer })];
+const plugins = [
+  ApolloServerPluginDrainHttpServer({ httpServer }),
+  // ApolloServerPluginLandingPageDisabled() // uncomment for production
+];
+// set introspection to false for production usage
 const server = new ApolloServer<ApolloServerContext>({ schema, plugins, introspection: true });
 await server.start();
 
